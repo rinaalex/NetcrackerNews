@@ -45,7 +45,7 @@ namespace NetcrackerNews.Controllers
             {
                 return BadRequest();
             }
-            article.TimeStamp = DateTime.Now;
+            article.TimeStamp = DateTime.Today;
             context.Articles.Add(article);
             context.SaveChanges();
             return Ok(article);
@@ -63,7 +63,7 @@ namespace NetcrackerNews.Controllers
             {
                 return NotFound();
             }
-            article.TimeStamp = DateTime.Now;
+            article.TimeStamp = DateTime.Today;
             context.Update(article);
             context.SaveChanges();
             return Ok(article);
