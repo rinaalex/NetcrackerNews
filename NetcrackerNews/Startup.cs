@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+using Microsoft.EntityFrameworkCore;
+using NetcrackerNews.Models;
+
 namespace NetcrackerNews
 {
     public class Startup
@@ -25,6 +28,9 @@ namespace NetcrackerNews
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = @"Server=LAPTOP-760ETF1K\SQLEXPRESS;Database=NetcrackerNewsDb;
+                Trusted_Connection=True; MultipleActiveResultSets=true";
+            services.AddDbContext<NewsContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
