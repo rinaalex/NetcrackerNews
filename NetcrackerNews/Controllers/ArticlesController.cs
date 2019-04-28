@@ -22,7 +22,7 @@ namespace NetcrackerNews.Controllers
         [HttpGet]
         public IEnumerable<Article> Get()
         {
-            return context.Articles.ToList();
+            return context.Articles.OrderByDescending(p=>p.TimeStamp).ToList();
         }
 
         // GET api/articles/5
@@ -45,6 +45,7 @@ namespace NetcrackerNews.Controllers
             {
                 return BadRequest();
             }
+            article.TimeStamp = DateTime.UtcNow;
             context.Articles.Add(article);
             context.SaveChanges();
             return Ok(article);
