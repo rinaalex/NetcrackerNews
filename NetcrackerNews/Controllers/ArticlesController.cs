@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NetcrackerNews.Models;
 
@@ -47,7 +46,7 @@ namespace NetcrackerNews.Controllers
             }
             if (ModelState.IsValid)
             {
-                article.TimeStamp = DateTime.Today;
+                article.TimeStamp = DateTime.Now;
                 context.Articles.Add(article);
                 context.SaveChanges();
                 return Ok(article);
@@ -72,7 +71,7 @@ namespace NetcrackerNews.Controllers
                 {
                     return NotFound();
                 }
-                article.TimeStamp = DateTime.Today;
+                article.TimeStamp = DateTime.Now;
                 context.Update(article);
                 context.SaveChanges();
                 return Ok(article);

@@ -12,6 +12,8 @@ namespace NetcrackerNews.Models
         [Required(ErrorMessage = "Текст статьи не может быть пустым.")]
         public string Text { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd:MM:yyyy}")]
+        [DataType(DataType.DateTime)]
         public DateTime TimeStamp { get; set; }
     }
 }

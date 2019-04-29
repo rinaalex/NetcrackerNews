@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\date.js" />
+    <Compile Remove="Migrations\20190429194424_DateTime-field-updated.cs" />
+    <Compile Remove="Migrations\20190429194424_DateTime-field-updated.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

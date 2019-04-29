@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>NetcrackerNews</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="date.js"></script>
+    <script type="text/javascript" src="jquery-dateformat.js"></script>
     <link rel="stylesheet" href="StyleSheet.css">
 </head>
 <body>
@@ -172,7 +172,7 @@
                 var readMore = "";
             return "<tr data-rowid='" + article.articleId + "'>" + "<td>" + article.text + "</td>" +
                 "<td><span class='teaser'>" + article.text.substr(0, articleMinLength) + "</span>" + readMore +"</td > " +
-                "<td>" + new Date.parse(article.timeStamp).toString("dd.MM.yyyy hh:mm:ss") + "</td>" +
+                "<td>" + $.format.date(article.timeStamp,"dd.MM.yyyy HH:mm:ss") + "</td>" +
                 "<td><a class='editBtn' data-id='" + article.articleId + "'>Изменить</a> | " +
                 "<a class='deleteBtn' data-id='" + article.articleId + "'>Удалить</a></td></tr>";
         };
