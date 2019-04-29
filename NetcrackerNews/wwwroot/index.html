@@ -166,7 +166,7 @@
         var row = function (article) {
             var articleMinLength = 5;
             if (article.text.length > articleMinLength) {
-                var readMore = "<span class='complete'>" + article.text.substr(articleMinLength) + "</span></br><a class='more'>Читать полностью</a>";
+                var readMore = "<span class='complete'>" + article.text.substr(articleMinLength) + "</span></br><a class='moreBtn'>Читать полностью</a>";
             }
             else
                 var readMore = "";
@@ -197,8 +197,7 @@
         });
 
         // Нажатие на кнопку Читать полностью
-        $("body").on("click", ".more", function () {
-            var id = $(this).data("id");
+        $("body").on("click", ".moreBtn", function () {
             var text = $(this).text();
             if (text === 'Читать полностью') {
                 $(this).text("Скрыть");

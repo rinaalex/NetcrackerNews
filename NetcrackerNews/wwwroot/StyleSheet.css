@@ -58,9 +58,10 @@ td {
     padding: 10px;
 }
 
-.editBtn, .deleteBtn{
+.editBtn, .deleteBtn, .moreBtn{
     text-decoration:underline;
     cursor:pointer;
+    color: grey;
 }
 
 .errorLog p{
@@ -70,12 +71,4 @@ td {
 
 .complete {
     display: none;
-}
-
-.more {
-    background: lightblue;
-    color: navy;
-    font-size: 13px;
-    padding: 3px;
-    cursor: pointer;
 }
