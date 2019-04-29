@@ -68,44 +68,14 @@ td {
     padding: 5px;
 }
 
-
-
-.show-hide-text {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-    .show-hide-text a {
-        order: 2;
-    }
-
-    .show-hide-text p {
-        position: relative;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 20ch;
-    }
-
-    .show-hide-text p {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-    }
-
-.show-less {
+.complete {
     display: none;
 }
 
-    .show-less:target {
-        display: block;
-    }
-
-        .show-less:target ~ p {
-            display: block;
-            max-height: 100%;
-            max-width: 100%;
-        }
-
-        .show-less:target + a {
-            display: none;
-        }
+.more {
+    background: lightblue;
+    color: navy;
+    font-size: 13px;
+    padding: 3px;
+    cursor: pointer;
+}

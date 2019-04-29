@@ -164,8 +164,15 @@
 
         // Создание строки для таблицы
         var row = function (article) {
-            return "<tr data-rowid='" + article.articleId + "'><td>" + article.title + "</td>" +
-                "<td>" + article.text + "</td> <td>" + new Date.parse(article.timeStamp).toString("dd.MM.yyyy hh:mm:ss") + "</td>" +
+            var articleMinLength = 5;
+            if (article.text.length > articleMinLength) {
+                var readMore = "<span class='complete'>" + article.text.substr(articleMinLength) + "</span></br><a class='more'>Читать полностью</a>";
+            }
+            else
+                var readMore = "";
+            return "<tr data-rowid='" + article.articleId + "'>" + "<td>" + article.text + "</td>" +
+                "<td><span class='teaser'>" + article.text.substr(0, articleMinLength) + "</span>" + readMore +"</td > " +
+                "<td>" + new Date.parse(article.timeStamp).toString("dd.MM.yyyy hh:mm:ss") + "</td>" +
                 "<td><a class='editBtn' data-id='" + article.articleId + "'>Изменить</a> | " +
                 "<a class='deleteBtn' data-id='" + article.articleId + "'>Удалить</a></td></tr>";
         };
@@ -174,8 +181,6 @@
         $("#reset-btn").click(function (e) {
             e.preventDefault();
             reset();
-            //$("#errorLog").css("display: none");
-            //$("#errorLog").empty();
         });
 
         // Отправка формы
@@ -190,6 +195,20 @@
             else
                 EditArticle(id, title, text);
         });
+
+        // Нажатие на кнопку Читать полностью
+        $("body").on("click", ".more", function () {
+            var id = $(this).data("id");
+            var text = $(this).text();
+            if (text === 'Читать полностью') {
+                $(this).text("Скрыть");
+                $(this).siblings(".complete").show();
+            }
+            else {
+                $(this).text("Читать полностью");
+                $(this).siblings(".complete").hide();
+            }            
+        })
 
         // Нажатие на кнопку Изменить
         $("body").on("click", ".editBtn", function () {
