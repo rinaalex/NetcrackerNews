@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NetcrackerNews.Models
 {
+    /// <summary>
+    /// Новостная статья
+    /// </summary>
     public class Article
     {
         public int ArticleId { get; set; }
@@ -12,8 +15,6 @@ namespace NetcrackerNews.Models
         [Required(ErrorMessage = "Текст статьи не может быть пустым.")]
         public string Text { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd:MM:yyyy}")]
-        [DataType(DataType.DateTime)]
         public DateTime TimeStamp { get; set; }
     }
 }
