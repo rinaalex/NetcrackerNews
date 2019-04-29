@@ -5,13 +5,15 @@
     <title>NetcrackerNews</title>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="date.js"></script>
+    <link rel="stylesheet" href="StyleSheet.css">
 </head>
 <body>
-    <h3>Добавление новостной статьи:</h3>
-    <div id="errorLog" style="display:none">
-        <p><span id="errorText"></span></p>
+    <h1>Новостной веб-сайт</h1>
+    <h3>Добавление статьи:</h3>
+    <div id="errorLog" class="errorLog" style="display:none">
+
     </div>
-    <form name="addArticleForm">
+    <form class="add-article-form" name="add-article-form">
         <input type="hidden" name="id" value="0" />
         <div class="form-group">
             <label for="title">Заголовок:</label><br />
@@ -19,26 +21,28 @@
         </div>
         <div class="form-group">
             <label for="text">Текст:</label><br />
-            <input class="form-control" type="text" name="text" /><br />
+            <textarea class="form-control" type="text" name="text"></textarea><br />
         </div>
-        <div class="panel-body">
-            <button class="btn" type="submit">Опубликовать</button>
-            <button class="btn" type="reset">Очистить</button>
+        <div class="form-btns">
+            <button class="form-btn" type="submit">Опубликовать</button>
+            <button id="reset-btn" class="form-btn" type="reset">Очистить</button>
         </div>
     </form>
 
-    <h3>Последние новости:</h3>
     <table class="table">
+        <caption>Последние новости:</caption>
         <thead><tr><th>Заголовок</th><th>Текст</th><th>Дата обновления:</th><th></th></tr></thead>
         <tbody></tbody>
     </table>
+
+
     <script type="text/javascript">
         // Загрузка списка статей
         function GetArticles() {
             $.ajax({
                 url: 'api/articles',
                 type: 'GET',
-                contentType: 'json',
+                contentType: 'json',                
                 success: function (articles) {
                     var rows = "";
                     $.each(articles, function (index, article) {
@@ -59,7 +63,7 @@
                 type: "GET",
                 dataType: "json",
                 success: function (article) {
-                    var form = document.forms["addArticleForm"];
+                    var form = document.forms["add-article-form"];
                     form.elements["id"].value = article.articleId;
                     form.elements["title"].value = article.title;
                     form.elements["text"].value = article.text;
@@ -81,8 +85,7 @@
                 reset();
                 $("table tbody").prepend(row(article));
             }).fail(function (jxqr, error, status) {
-                ShowError(jxqr);
-                $("#errorLog").show();
+                ShowError(jxqr);                
             });
         };
 
@@ -102,15 +105,15 @@
                 $("tr[data-rowid='" + article.articleId + "']").replaceWith(row(article));
             }).fail(function (jxqr, error, status) {
                 ShowError(jxqr);
-                $("#errorLog").show();
             });
         };
 
         // Вывод сообщения об ошибках валидации
         function ShowError(jxqr) {
-            console.log(jxqr);
+            $("#errorLog").empty();
+            //console.log(jxqr);
             if (jxqr.responseText === "") {
-                $('#errorLog').append("<h3>" + jxqr.statusText + "</h3>");
+                $('#errorLog').append("<p>" + jxqr.statusText + "</p>");
             }
             var response = JSON.parse(jxqr.responseText);
 
@@ -130,28 +133,33 @@
                     $('#errorLog').append("<p>" + item + "</p>");
                 });
             }
+            $("#errorLog").show();
         };
 
         // Сброс формы
         function reset() {
-            var form = document.forms["addArticleForm"];
+            var form = document.forms["add-article-form"];
             form.reset();
-            form.elements["id"].value = 0;
+            form.elements["id"].value = 0;  
             $("#errorLog").empty();
+            $("#errorLog").css("display: none");
         };
 
         // Удаление статьи
         function RemoveArticle(id) {
-            $.ajax({
-                type: "DELETE",
-                url: "/api/articles/" + id,
-                contentType: "application/json"
-            }).success(function (article) {
-                $("tr[data-rowid='" + article.articleId + "']").remove();
+            let isConfirmed = confirm("Удалить выбранную статью?")
+            if (isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/articles/" + id,
+                    contentType: "application/json"
+                }).success(function (article) {
+                    $("tr[data-rowid='" + article.articleId + "']").remove();
                 }).fail(function (data) {
                     console.log(data);
-                //$("#errorLog").show();
-            });
+                    //$("#errorLog").show();
+                });
+            };
         };
 
         // Создание строки для таблицы
@@ -163,9 +171,11 @@
         };
 
         // Нажатие на кнопку Очистить
-        $("#reset").click(function (e) {
+        $("#reset-btn").click(function (e) {
             e.preventDefault();
             reset();
+            //$("#errorLog").css("display: none");
+            //$("#errorLog").empty();
         });
 
         // Отправка формы

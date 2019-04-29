@@ -1,0 +1,111 @@
+﻿body {
+    font-family: Arial;
+    color: steelblue;
+}
+
+.add-article-form {
+    font-size: 12pt;
+    font-weight: bold;
+    color: steelblue;
+    margin: 10px;
+}
+
+.form-control {
+    width: 100%;
+    background-color: aliceblue;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 12pt;
+    margin: 10px;
+}
+
+.form-btn {
+    background-color: aliceblue;
+    color: steelblue;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-size: 12pt;
+    margin: 5px;
+}
+
+.form-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12pt;
+    text-align: left;
+}
+caption {
+    caption-side: top;
+    text-align: left;
+    padding: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    color: steelblue;    
+}
+th {
+    color: steelblue;
+    background-color: aliceblue;
+    border-bottom: 3px solid grey;
+    padding: 10px;
+}
+td {
+    border-bottom: 1px solid grey;
+    padding: 10px;
+}
+
+.editBtn, .deleteBtn{
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.errorLog p{
+    color: orangered;
+    padding: 5px;
+}
+
+
+
+.show-hide-text {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .show-hide-text a {
+        order: 2;
+    }
+
+    .show-hide-text p {
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 20ch;
+    }
+
+    .show-hide-text p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+    }
+
+.show-less {
+    display: none;
+}
+
+    .show-less:target {
+        display: block;
+    }
+
+        .show-less:target ~ p {
+            display: block;
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .show-less:target + a {
+            display: none;
+        }
