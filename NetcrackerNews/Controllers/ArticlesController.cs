@@ -40,15 +40,22 @@ namespace NetcrackerNews.Controllers
         // POST api/articles
         [HttpPost]
         public IActionResult Post([FromBody]Article article)
-        {
-            if(article==null)
+        {            
+            if (article == null)
             {
                 return BadRequest();
             }
-            article.TimeStamp = DateTime.Today;
-            context.Articles.Add(article);
-            context.SaveChanges();
-            return Ok(article);
+            if (ModelState.IsValid)
+            {
+                article.TimeStamp = DateTime.Today;
+                context.Articles.Add(article);
+                context.SaveChanges();
+                return Ok(article);
+            }           
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         // PUT api/articles/
@@ -59,14 +66,21 @@ namespace NetcrackerNews.Controllers
             {
                 return BadRequest();
             }
-            if (!context.Articles.Any(p => p.ArticleId == article.ArticleId))
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                if (!context.Articles.Any(p => p.ArticleId == article.ArticleId))
+                {
+                    return NotFound();
+                }
+                article.TimeStamp = DateTime.Today;
+                context.Update(article);
+                context.SaveChanges();
+                return Ok(article);
             }
-            article.TimeStamp = DateTime.Today;
-            context.Update(article);
-            context.SaveChanges();
-            return Ok(article);
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         // DELETE api/articles/5
