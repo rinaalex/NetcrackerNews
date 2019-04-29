@@ -10,6 +10,7 @@
 }
 
 .form-control {
+    font-family:Arial;
     width: 100%;
     background-color: aliceblue;
     border: none;
