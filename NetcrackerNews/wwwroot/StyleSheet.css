@@ -6,7 +6,6 @@
 .add-article-form {
     font-size: 12pt;
     font-weight: bold;
-    color: steelblue;
     margin: 10px;
 }
 
@@ -58,9 +57,14 @@ td {
     padding: 10px;
 }
 
-.editBtn, .deleteBtn, .moreBtn{
-    text-decoration:underline;
-    cursor:pointer;
+/*Стиль столбца с текстом статьи*/
+table td:nth-child(2){
+   width: 50%;
+}
+
+.editBtn, .deleteBtn, .moreBtn {
+    text-decoration: underline;
+    cursor: pointer;
     color: grey;
 }
 
