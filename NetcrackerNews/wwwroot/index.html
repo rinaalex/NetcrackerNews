@@ -164,13 +164,13 @@
 
         // Создание строки для таблицы
         var row = function (article) {
-            var articleMinLength = 5;
+            var articleMinLength = 200;
             if (article.text.length > articleMinLength) {
                 var readMore = "<span class='complete'>" + article.text.substr(articleMinLength) + "</span></br><a class='moreBtn'>Читать полностью</a>";
             }
             else
                 var readMore = "";
-            return "<tr data-rowid='" + article.articleId + "'>" + "<td>" + article.text + "</td>" +
+            return "<tr data-rowid='" + article.articleId + "'>" + "<td>" + article.title + "</td>" +
                 "<td><span class='teaser'>" + article.text.substr(0, articleMinLength) + "</span>" + readMore +"</td > " +
                 "<td>" + $.format.date(article.timeStamp,"dd.MM.yyyy HH:mm:ss") + "</td>" +
                 "<td><a class='editBtn' data-id='" + article.articleId + "'>Изменить</a> | " +
