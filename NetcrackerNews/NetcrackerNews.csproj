@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190429194424_DateTime-field-updated.cs" />
     <Compile Remove="Migrations\20190429194424_DateTime-field-updated.Designer.cs" />
+    <Compile Remove="Migrations\20190429203553_Test.cs" />
+    <Compile Remove="Migrations\20190429203553_Test.Designer.cs" />
+    <Compile Remove="Migrations\20190430055727_Seed.cs" />
+    <Compile Remove="Migrations\20190430055727_Seed.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
